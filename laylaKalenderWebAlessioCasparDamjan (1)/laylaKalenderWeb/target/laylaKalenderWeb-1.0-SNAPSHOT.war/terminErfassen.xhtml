@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: caspa
+  Date: 15.02.2023
+  Time: 15:11
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:HH="http://java.sun.com/jsf/composite" xmlns:p="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Termin erfassen</title>
+    <link rel="stylesheet" href="stylesheet.css"/>
+</h:head>
+
+<h:body onload="pageLoaded()">
+    <div id="header">
+        <a href="index.xhtml">
+            <img src="https://cdn.discordapp.com/attachments/985795697783762965/985879958729662494/Unbenannt.png" id="imgHeader" style="height: 60px;" class="logo" alt="Layla Logo"/>
+        </a>
+    </div>
+
+    <br></br>
+    <br></br>
+
+    <h:form>
+        <div id="erfassen">
+            <h:panelGrid id = "panel" columns = "2" border = "1" cellpadding = "10" cellspacing = "1">
+
+                <f:facet name = "header">
+                    <h:outputText value = "Termin Erfassen"/>
+                </f:facet>
+
+                <h:outputLabel for="datum" value = "Datum:" />
+                <h:inputText required="true" id="datum" value="#{addBean.kalenderCDI.kalender.aktuellerTermin.datum}">
+                    <f:convertDateTime pattern="dd.MM.yyyy"/>
+                    <f:validator validatorId="datumInZukunft"/>
+                </h:inputText>
+                <h:outputLabel for="von" value = "Von:" />
+                <h:inputText required="true" id="von" value="#{addBean.kalenderCDI.kalender.aktuellerTermin.von}">
+                    <f:convertDateTime type="time" pattern="HH:mm"/>
+                </h:inputText>
+                <h:outputLabel for="bis" value = "Bis:" />
+                <h:inputText required="true" id="bis" value="#{addBean.kalenderCDI.kalender.aktuellerTermin.bis}">
+                    <f:convertDateTime type="time" pattern="HH:mm"/>
+                </h:inputText>
+                <h:outputLabel for="zimmer" value = "Zimmer:" />
+                <h:selectOneListbox validatorMessage="Ein Raum muss selektiert sein." required="true" id="zimmer" value="#{addBean.kalenderCDI.kalender.aktuellerTermin.zimmernummer}">
+                    <f:selectItem itemValue="#{101}" itemLabel="Zimmer 101"/>
+                    <f:selectItem itemValue="#{102}" itemLabel="Zimmer 102"/>
+                    <f:selectItem itemValue="#{103}" itemLabel="Zimmer 103"/>
+                    <f:selectItem itemValue="#{104}" itemLabel="Zimmer 104"/>
+                    <f:selectItem itemValue="#{105}" itemLabel="Zimmer 105"/>
+                </h:selectOneListbox>
+                <h:outputLabel for="bemerkung" value = "Bemerkung:" />
+                <h:inputTextarea validatorMessage="Bemerkung braucht 10-200 Zeichen." required="true" id="bemerkung" value="#{addBean.kalenderCDI.kalender.aktuellerTermin.bemerkung}">
+                    <f:validateLength minimum="10" maximum="200"/>
+                </h:inputTextarea>
+                <h:outputLabel for="teilnehmer" value = "Teilnehmer:" />
+                <h:inputTextarea validatorMessage="Die E-Mails der Teilnehmer müssen wie folgt aufgelistet werden: email@example.com,email@example.com,..." required="true" id="teilnehmer" value="#{addBean.kalenderCDI.kalender.aktuellerTermin.teilnehmerAsString}">
+                    <f:validateRegex pattern="^([\w+-.%]+@[\w\-.]+\.[A-Za-z]{2,4},?)+$"></f:validateRegex>
+                </h:inputTextarea>
+                <h:outputLabel for="gruender" value = "Gründer:" />
+                <h:inputText validatorMessage="E-Mail muss wie folgt aussehen: email@example.com" required="true" id="gruender" value="#{addBean.kalenderCDI.kalender.aktuellerTermin.gruender}">
+                    <f:validateRegex pattern="^[^\s]+\@[^\s]+\.[^\s]+$"></f:validateRegex>
+                </h:inputText>
+
+                <f:facet name = "footer">
+                    <h:panelGroup style = "display:block; text-align:center">
+                        <h:commandButton id = "terminerstellen" value = "Erstellen" class="sbuttons" action="#{addBean.addTermin()}"/>
+                        <br/>
+                        <h:messages/>
+                    </h:panelGroup>
+                </f:facet>
+            </h:panelGrid>
+        </div>
+    </h:form>
+</h:body>
+<script type="text/javascript">
+    function pageLoaded() {
+        #{addBean.pageLoaded()};
+    }
+</script>
+
+</html>

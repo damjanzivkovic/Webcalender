@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Termin Ansehen</title>
+    <link rel="stylesheet" href="stylesheet.css"/>
+</h:head>
+
+<h:body>
+    <div id="header">
+        <a onclick="" href="index.xhtml">
+            <img src="https://cdn.discordapp.com/attachments/985795697783762965/985879958729662494/Unbenannt.png" id="imgHeader" style="height: 60px;" class="logo" alt="Layla Logo"/>
+        </a>
+    </div>
+
+    <br></br>
+    <br></br>
+    <div id="formansehen">
+        <h:form >
+            <h:panelGrid id ="lookuppanel" columns = "2" border = "1" cellpadding = "10" cellspacing = "1" style="margin: 0 auto;">
+                <f:facet name = "header" class="lookupnoncenter">
+                    <h:outputText value = "Termin Ansehen" />
+                </f:facet>
+
+                <h:outputLabel value = "Public Key:" />
+                <h:outputText value="#{lookUpBean.readKalender().aktuellerTermin.publicKey}">
+                    <f:convertDateTime pattern="dd.MM.yyyy"/>
+                </h:outputText>
+
+                <h:outputLabel value = "Datum:" />
+                <h:outputText value="#{lookUpBean.readKalender().aktuellerTermin.datum}">
+                    <f:convertDateTime pattern="dd.MM.yyyy"/>
+                </h:outputText>
+
+                <h:outputLabel value = "Von:" />
+                <h:outputText value="#{lookUpBean.readKalender().aktuellerTermin.von}">
+                    <f:convertDateTime type="time" pattern="HH:mm"/>
+                </h:outputText>
+
+                <h:outputLabel value = "Bis:" />
+                <h:outputText value="#{lookUpBean.readKalender().aktuellerTermin.bis}">
+                    <f:convertDateTime type="time" pattern="HH:mm"/>
+                </h:outputText>
+
+                <h:outputLabel value = "Zimmernummer:" />
+                <h:outputText value="#{lookUpBean.readKalender().aktuellerTermin.zimmernummer}"></h:outputText>
+
+                <h:outputLabel value = "Bemerkungen:" />
+                <h:outputText value="#{lookUpBean.readKalender().aktuellerTermin.bemerkung}"></h:outputText>
+
+                <h:outputLabel value = "Teilnehmer:" />
+                <h:outputText value="#{lookUpBean.readKalender().aktuellerTermin.teilnehmerAsString}"></h:outputText>
+
+                <h:outputLabel value = "Gruender:" />
+                <h:outputText value="#{lookUpBean.readKalender().aktuellerTermin.gruender}"></h:outputText>
+
+            </h:panelGrid>
+        </h:form>
+    </div>
+</h:body>
+</html>

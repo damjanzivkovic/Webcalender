@@ -1,0 +1,66 @@
+.logo{
+    transition-duration: 0.2s;
+    transition-property: transform;
+    transform: scale(1.05);
+}
+.logo:hover{
+    transform: scale(1.2);
+}
+#header{
+    display:flex;
+    margin: 0;
+    justify-content: center;
+    background-color: rgb(0, 0, 0);
+    top:0;
+    width:100%;
+    z-index: 1;
+}
+body{
+    margin:0;
+    background-image: url("https://i.pinimg.com/originals/20/6a/eb/206aeb50a2f790d25c1ff54b6011b0a7.jpg");
+    background-repeat: repeat;
+    overflow-x: hidden;
+}
+h1{
+    font-size: 30px;
+    font-weight: bold;
+}
+*{
+    color: white;
+    font-size: 20px;
+    text-align: center;
+}
+.keys{
+    border-color: black;
+    border-style: solid;
+    background-color: rgba(108,122,137,0.8);
+    width: 325px;
+    height: 85px;
+    margin: 0 auto;
+}
+#erfassen,#loeschen{
+    width: 325px;
+    height: auto;
+    margin: 0 auto;
+}
+input,textarea,option{
+    color: black;
+}
+.sbuttons{
+    width: 255px;
+    color: black;
+    background-color: #ff7300;
+}
+#search{
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+form{
+    margin-bottom: 10px;
+}
+li{
+    list-style: none;
+    color: red;
+}

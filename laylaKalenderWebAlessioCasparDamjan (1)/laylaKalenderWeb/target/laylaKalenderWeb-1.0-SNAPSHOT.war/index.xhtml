@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: caspa
+  Date: 15.02.2023
+  Time: 13:25
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Index - Layla Kalender</title>
+    <link rel="stylesheet" href="stylesheet.css"/>
+</h:head>
+
+<h:body>
+    <div id="header">
+        <h:link href="index.xhtml">
+            <img src="https://cdn.discordapp.com/attachments/985795697783762965/985879958729662494/Unbenannt.png" id="imgHeader" style="height: 60px;" class="logo" alt="Layla Logo"/>
+        </h:link>
+    </div>
+
+    <h1>Layla Kalender</h1>
+    <a href="terminErfassen.xhtml" >Termin Erfassen</a>
+    <div id="search">
+        <h:form>
+            <div class="keys">
+                <h:outputLabel value="Public Key:" for="pubkey"/> <br></br>
+                <h:inputText id="pubkey" value="#{startPageBean.publicKeyInput}">
+                    <f:validateLength minimum="1"></f:validateLength>
+                </h:inputText> <br></br>
+                <h:commandButton action="#{startPageBean.checkPublicKey()}" id="searchpublic" value="Search" class="sbuttons"></h:commandButton>
+            </div>
+        </h:form>
+        <h:form>
+            <div class="keys">
+                <h:outputLabel value="Private Key:" for="privkey"/> <br></br>
+                <h:inputText id="privkey" value="#{startPageBean.privateKeyInput}" >
+                    <f:validateLength minimum="1"></f:validateLength>
+                </h:inputText> <br></br>
+                <h:commandButton action="#{startPageBean.checkPrivateKey()}" id="searchprivate" value="Search" class="sbuttons"></h:commandButton>
+            </div>
+        </h:form>
+    </div>
+
+    <h:dataTable value="#{startPageBean.kalenderCDI.kalender.gesetzteTermine}" var="buch" border="1" cellpadding="4">
+        <h:column>
+            <f:facet name="header">PuK</f:facet>
+            #{buch.publicKey}
+        </h:column>
+        <h:column>
+            <f:facet name="header">PrK</f:facet>
+            #{buch.privateKey}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Teilnehmer</f:facet>
+            #{buch.teilnehmer}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Teilnehmer</f:facet>
+            #{buch.teilnehmerAsString}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Von</f:facet>
+            #{buch.von}
+        </h:column>
+    </h:dataTable>
+</h:body>
+</html>
